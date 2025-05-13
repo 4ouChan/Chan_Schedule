@@ -16,5 +16,5 @@
 
 <details><summary> 다이어그램 </summary>
   
-<img src = "https://github.com/user-attachments/assets/7438fd42-b473-490f-b7e8-eb47453cbabb" width = "1000" height = "400">
+<img src = "https://github.com/user-attachments/assets/af7420ef-507e-4feb-96b6-ddbaced28daf" width = "1000" height = "400">
 </details>

@@ -35,4 +35,9 @@ public class Serviced {
         return repository.scheduleList();
     }
 
+    public ResponseDto getSchedule(long id) {
+
+        return repository.getSchedule(id);
+    }
+
 }

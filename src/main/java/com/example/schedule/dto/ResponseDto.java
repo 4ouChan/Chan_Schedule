@@ -1,12 +1,9 @@
 package com.example.schedule.dto;
 
-//import com.example.schedule.entity.User;
 import com.example.schedule.entity.Schedule;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 public class ResponseDto {

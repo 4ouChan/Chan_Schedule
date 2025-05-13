@@ -2,6 +2,7 @@ package com.example.schedule.controller;
 
 import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
+import com.example.schedule.entity.Schedule;
 import com.example.schedule.service.Serviced;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,12 @@ public class Controller {
     public List<ResponseDto> scheduleList() {
 
         return service.scheduleList();
+    }
+
+    @GetMapping("/{scheduleId}")
+    public ResponseEntity<ResponseDto> getSchedule(@PathVariable long scheduleId) {
+        ResponseDto getSchedule = service.getSchedule(scheduleId);
+        return ResponseEntity.ok(getSchedule);
     }
 
 }

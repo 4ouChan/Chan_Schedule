@@ -1,5 +1,6 @@
 package com.example.schedule.repository;
 
+import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
 import com.example.schedule.entity.Schedule;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,6 @@ public class MyRepository {
     // 기능
 
     private RowMapper<ResponseDto> rowMapper() {
-
         return new RowMapper<ResponseDto>() {
             @Override
             public ResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -51,7 +50,7 @@ public class MyRepository {
     public ResponseDto createSchedule(Schedule schedule) {
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("schedule").usingGeneratedKeyColumns("scheduleId");
+        jdbcInsert.withTableName("schedule").usingGeneratedKeyColumns("userId");
 
 
         Map<String, Object> cheduleData = new HashMap<>();
@@ -71,7 +70,14 @@ public class MyRepository {
     }
 
     public List<ResponseDto> scheduleList() {
-        return jdbcTemplate.query("select userId, userName, scheduleId, schedule, createDate, updateDate from schedule", rowMapper());
+        String sql = "SELECT userId, userName, scheduleId, schedule, createDate, updateDate FROM schedule";
+        return jdbcTemplate.query(sql, rowMapper());
+    }
+
+    public ResponseDto getSchedule(long id) {
+        String sql = "SELECT userId, userName, scheduleId, schedule, createDate, updateDate FROM schedule WHERE scheduleId = ?";
+
+        return jdbcTemplate.queryForObject(sql, rowMapper(), id);
     }
 
 }

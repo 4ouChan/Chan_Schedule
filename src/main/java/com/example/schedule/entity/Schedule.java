@@ -3,9 +3,7 @@ package com.example.schedule.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @AllArgsConstructor
@@ -25,6 +23,10 @@ public class Schedule {
         this.userName = userName;
         this.password = password;
         this.schedule = schedule;
+    }
+
+    public Schedule(long scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
 }

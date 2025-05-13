@@ -11,4 +11,3 @@ public class ScheduleApplication {
     }
 
 }
-// 일정 생성 기능

@@ -45,4 +45,3 @@ public class MyRepository {
         return new ResponseDto(key.longValue(), user.getUserName(), key.longValue(), schedule.getSchedule());
     }
 }
-// 일정 생성 기능

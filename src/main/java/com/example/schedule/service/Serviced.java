@@ -31,4 +31,3 @@ public class Serviced {
         return responseDto;
     }
 }
-// 일정 생성 기능

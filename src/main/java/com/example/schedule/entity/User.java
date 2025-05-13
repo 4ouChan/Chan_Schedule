@@ -22,4 +22,3 @@ public class User {
     // 기능
 
 }
-// 일정 생성 기능

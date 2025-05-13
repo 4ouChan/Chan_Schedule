@@ -27,4 +27,3 @@ public class Controller {
         return responseDto;
     }
 }
-// 일정 생성 기능

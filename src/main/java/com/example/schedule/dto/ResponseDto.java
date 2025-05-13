@@ -13,7 +13,6 @@ public class ResponseDto {
     private long scheduleId;
     private String schedule;
 
-    // 생성자
 
     public ResponseDto(String userName, String schedule) {
         this.userName = userName;
@@ -28,7 +27,4 @@ public class ResponseDto {
     }
 
 
-    // 기능
-
 }
-// 일정 생성 기능

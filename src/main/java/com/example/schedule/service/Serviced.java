@@ -4,7 +4,9 @@ import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
 import com.example.schedule.entity.Schedule;
 import com.example.schedule.repository.MyRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class Serviced {
     // 기능
     public ResponseDto createSchedule(RequestDto dto) {
 
-        Schedule schedule = new Schedule(dto.getUserName(), dto.getPassword(), dto.getSchedule());
+        Schedule schedule = new Schedule(dto.getUserName(), dto.getSchedule());
 
         ResponseDto responseDto = repository.createSchedule(schedule);
 
@@ -38,6 +40,23 @@ public class Serviced {
     public ResponseDto getSchedule(long id) {
 
         return repository.getSchedule(id);
+    }
+
+    public ResponseDto updateSchedule(long id, RequestDto dto) {
+
+        if (dto.getUserName() == null || dto.getSchedule() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        int updateSchedule = repository.updateSchedule(id, dto.getUserName(), dto.getSchedule());
+
+        if (updateSchedule == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        ResponseDto schedule = repository.getSchedule(id);
+
+        return schedule;
     }
 
 }

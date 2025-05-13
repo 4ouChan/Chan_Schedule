@@ -9,38 +9,41 @@ import java.time.LocalDateTime;
 public class ResponseDto {
 
     // 속성
-    private long userId;
+    private long scheduleId;
     private String userName;
     private String password;
-    private long scheduleId;
     private String schedule;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 
 
-    public ResponseDto(long userId, String userName, long scheduleId, String schedule) {
-        this.userId = userId;
+    public ResponseDto(long scheduleId, String userName, String schedule) {
         this.userName = userName;
         this.scheduleId = scheduleId;
         this.schedule = schedule;
     }
 
-    public ResponseDto(long userId, String userName, long scheduleId, String schedule, LocalDateTime createDate, LocalDateTime updateDate) {
-        this.userId = userId;
-        this.userName = userName;
+    public ResponseDto(long scheduleId, String userName, String schedule, LocalDateTime createDate, LocalDateTime updateDate) {
         this.scheduleId = scheduleId;
+        this.userName = userName;
         this.schedule = schedule;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
+//    public ResponseDto(Schedule schedule) {
+//        this.scheduleId = getScheduleId();
+//        this.userName = getUserName();
+//        this.schedule = getSchedule();
+//        this.createDate = getCreateDate();
+//        this.updateDate = getUpdateDate();
+//    }
     public ResponseDto(Schedule schedule) {
-        this.userId = getUserId();
-        this.userName = getUserName();
-        this.scheduleId = getScheduleId();
-        this.schedule = getSchedule();
-        this.createDate = getCreateDate();
-        this.updateDate = getUpdateDate();
+        this.scheduleId = schedule.getScheduleId();
+        this.userName = schedule.getUserName();
+        this.schedule = schedule.getSchedule();
+        this.createDate = schedule.getCreateDate();
+        this.updateDate = schedule.getUpdateDate();
     }
 
 

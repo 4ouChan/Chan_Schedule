@@ -44,4 +44,13 @@ public class Controller {
         return ResponseEntity.ok(getSchedule);
     }
 
+    @PutMapping("/{scheduleId}")
+    public ResponseEntity<ResponseDto> updateSchedule(
+            @PathVariable long scheduleId,
+            @RequestBody RequestDto dto
+    ) {
+        ResponseDto updateSchedule = service.updateSchedule(scheduleId, dto);
+        return ResponseEntity.ok(updateSchedule);
+    }
+
 }

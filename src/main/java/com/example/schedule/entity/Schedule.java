@@ -10,10 +10,9 @@ import java.time.LocalDateTime;
 public class Schedule {
 
     // 속성
-    private long userId;
+    private long scheduleId;
     private String userName;
     private String password;
-    private long scheduleId;
     private String schedule;
     private LocalDateTime createDate = LocalDateTime.now();
     private LocalDateTime updateDate = LocalDateTime.now();
@@ -25,8 +24,15 @@ public class Schedule {
         this.schedule = schedule;
     }
 
-    public Schedule(long scheduleId) {
-        this.scheduleId = scheduleId;
+    public Schedule(String userName, String schedule) {
+        this.userName = userName;
+        this.schedule = schedule;
     }
+
+//    public Schedule(long scheduleId) {
+//        this.scheduleId = scheduleId;
+//    }
+
+
 
 }

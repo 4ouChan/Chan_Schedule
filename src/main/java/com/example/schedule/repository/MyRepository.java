@@ -35,9 +35,8 @@ public class MyRepository {
             @Override
             public ResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return new ResponseDto(
-                        rs.getLong("userId"),
-                        rs.getString("userName"),
                         rs.getLong("scheduleId"),
+                        rs.getString("userName"),
                         rs.getString("schedule"),
                         rs.getTimestamp("createDate").toLocalDateTime(),
                         rs.getTimestamp("updateDate").toLocalDateTime()
@@ -50,14 +49,13 @@ public class MyRepository {
     public ResponseDto createSchedule(Schedule schedule) {
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("schedule").usingGeneratedKeyColumns("userId");
+        jdbcInsert.withTableName("schedule").usingGeneratedKeyColumns("scheduleId");
 
 
         Map<String, Object> cheduleData = new HashMap<>();
-        cheduleData.put("userId", schedule.getUserId());
+        cheduleData.put("scheduleId", schedule.getScheduleId());
         cheduleData.put("userName", schedule.getUserName());
         cheduleData.put("password", schedule.getPassword());
-        cheduleData.put("scheduleId", schedule.getScheduleId());
         cheduleData.put("schedule", schedule.getSchedule());
         cheduleData.put("createDate", schedule.getCreateDate());
         cheduleData.put("updateDate", schedule.getUpdateDate());
@@ -66,18 +64,27 @@ public class MyRepository {
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(cheduleData));
 
 
-        return new ResponseDto(key.longValue(), schedule.getUserName(), key.longValue(), schedule.getSchedule(), schedule.getCreateDate(), schedule.getUpdateDate());
+        return new ResponseDto(key.longValue(), schedule.getUserName(), schedule.getSchedule(), schedule.getCreateDate(), schedule.getUpdateDate());
     }
 
     public List<ResponseDto> scheduleList() {
-        String sql = "SELECT userId, userName, scheduleId, schedule, createDate, updateDate FROM schedule";
+        String sql = "SELECT scheduleId, userName, schedule, createDate, updateDate FROM schedule";
         return jdbcTemplate.query(sql, rowMapper());
     }
 
     public ResponseDto getSchedule(long id) {
-        String sql = "SELECT userId, userName, scheduleId, schedule, createDate, updateDate FROM schedule WHERE scheduleId = ?";
+        String sql = "SELECT scheduleId, userName, schedule, createDate, updateDate FROM schedule WHERE scheduleId = ?";
 
         return jdbcTemplate.queryForObject(sql, rowMapper(), id);
     }
 
+//    public int updateSchedule(long id, Schedule schedule) {
+//
+//    }
+
+    public int updateSchedule(long id, String userName, String schedule) {
+        String sql = "UPDATE schedule SET userName = ?, schedule = ? WHERE scheduleid = ?";
+
+        return jdbcTemplate.update(sql, userName, schedule, id);
+    }
 }

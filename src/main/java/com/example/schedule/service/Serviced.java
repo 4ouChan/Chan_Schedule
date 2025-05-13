@@ -44,19 +44,18 @@ public class Serviced {
 
     public ResponseDto updateSchedule(long id, RequestDto dto) {
 
-        if (dto.getUserName() == null || dto.getSchedule() == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-
-        int updateSchedule = repository.updateSchedule(id, dto.getUserName(), dto.getSchedule());
-
-        if (updateSchedule == 0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
         ResponseDto schedule = repository.getSchedule(id);
 
-        return schedule;
+        if (dto.getPassword().equals(repository.getSchedule(id).getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        } else {
+            int updateSchedule = repository.updateSchedule(id, dto.getUserName(), dto.getSchedule(), dto.getPassword());
+        }
+
+
+        ResponseDto updateSchedule = repository.getSchedule(id);
+
+        return updateSchedule;
     }
 
 }

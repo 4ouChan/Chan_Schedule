@@ -78,13 +78,9 @@ public class MyRepository {
         return jdbcTemplate.queryForObject(sql, rowMapper(), id);
     }
 
-//    public int updateSchedule(long id, Schedule schedule) {
-//
-//    }
+    public int updateSchedule(long id, String userName, String schedule, String password) {
+        String sql = "UPDATE schedule SET userName = ?, schedule = ? WHERE scheduleid = ? AND password = ?";
 
-    public int updateSchedule(long id, String userName, String schedule) {
-        String sql = "UPDATE schedule SET userName = ?, schedule = ? WHERE scheduleid = ?";
-
-        return jdbcTemplate.update(sql, userName, schedule, id);
+        return jdbcTemplate.update(sql, userName, schedule, id, password);
     }
 }

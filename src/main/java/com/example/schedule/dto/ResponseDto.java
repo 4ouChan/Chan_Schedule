@@ -31,13 +31,7 @@ public class ResponseDto {
         this.updateDate = updateDate;
     }
 
-//    public ResponseDto(Schedule schedule) {
-//        this.scheduleId = getScheduleId();
-//        this.userName = getUserName();
-//        this.schedule = getSchedule();
-//        this.createDate = getCreateDate();
-//        this.updateDate = getUpdateDate();
-//    }
+
     public ResponseDto(Schedule schedule) {
         this.scheduleId = schedule.getScheduleId();
         this.userName = schedule.getUserName();

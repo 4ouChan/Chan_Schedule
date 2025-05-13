@@ -29,9 +29,7 @@ public class Schedule {
         this.schedule = schedule;
     }
 
-//    public Schedule(long scheduleId) {
-//        this.scheduleId = scheduleId;
-//    }
+
 
 
 

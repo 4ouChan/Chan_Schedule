@@ -3,9 +3,10 @@ package com.example.schedule.service;
 import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
 import com.example.schedule.entity.Schedule;
-import com.example.schedule.entity.User;
 import com.example.schedule.repository.MyRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class Serviced {
@@ -23,11 +24,15 @@ public class Serviced {
     // 기능
     public ResponseDto createSchedule(RequestDto dto) {
 
-        User user = new User(dto.getUserName(), dto.getPassword());
-        Schedule schedule = new Schedule(dto.getSchedule());
+        Schedule schedule = new Schedule(dto.getUserName(), dto.getPassword(), dto.getSchedule());
 
-        ResponseDto responseDto = repository.createSchedule(user, schedule);
+        ResponseDto responseDto = repository.createSchedule(schedule);
 
         return responseDto;
     }
+
+    public List<ResponseDto> scheduleList() {
+        return repository.scheduleList();
+    }
+
 }

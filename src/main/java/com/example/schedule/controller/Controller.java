@@ -3,8 +3,11 @@ package com.example.schedule.controller;
 import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
 import com.example.schedule.service.Serviced;
-import lombok.Getter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/schedules")
@@ -18,12 +21,20 @@ public class Controller {
         this.service = service;
     }
 
+
     // 기능
     @PostMapping
-    public ResponseDto createSchedule(@RequestBody RequestDto dto) {
+    public ResponseEntity<ResponseDto> createSchedule(@RequestBody RequestDto dto) {
 
-        ResponseDto responseDto = service.createSchedule(dto);
+        ResponseEntity<ResponseDto> responseDto = new ResponseEntity<>(service.createSchedule(dto), HttpStatus.OK);
 
         return responseDto;
     }
+
+    @GetMapping
+    public List<ResponseDto> scheduleList() {
+
+        return service.scheduleList();
+    }
+
 }

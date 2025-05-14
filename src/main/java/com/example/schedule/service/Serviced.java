@@ -52,10 +52,16 @@ public class Serviced {
             int updateSchedule = repository.updateSchedule(id, dto.getUserName(), dto.getSchedule(), dto.getPassword(), dto.getUpdateDate());
         }
 
-
         ResponseDto updateSchedule = repository.getSchedule(id);
 
         return updateSchedule;
+    }
+
+    public List<ResponseDto> deleteSchedule(long id) {
+
+        int deleted = repository.deleteSchedule(id);
+
+        return repository.scheduleList();
     }
 
 }

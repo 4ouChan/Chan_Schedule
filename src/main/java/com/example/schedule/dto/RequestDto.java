@@ -12,23 +12,4 @@ public class RequestDto {
     private String schedule;
     private LocalDateTime updateDate = LocalDateTime.now();
 
-    public RequestDto() {
-
-    }
-
-    public RequestDto(String userName, String password, String schedule) {
-        this.userName = userName;
-        this.password = password;
-        this.schedule = schedule;
-    }
-
-    public RequestDto(String userName, String password, String schedule, LocalDateTime updateDate) {
-        this.userName = userName;
-        this.password = password;
-        this.schedule = schedule;
-        this.updateDate = updateDate;
-    }
-
-
-
 }

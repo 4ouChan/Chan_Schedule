@@ -1,6 +1,5 @@
 package com.example.schedule.repository;
 
-import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
 import com.example.schedule.entity.Schedule;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,10 +27,11 @@ public class MyRepository {
     }
 
     private Map<String, Object> scheduleData = new HashMap<>();
+
     // 생성자
 
-    // 기능
 
+    // 기능
     private RowMapper<ResponseDto> rowMapper() {
         return new RowMapper<ResponseDto>() {
             @Override
@@ -83,5 +83,12 @@ public class MyRepository {
         scheduleData.put("updateDate", updateDate);
 
         return jdbcTemplate.update(sql, userName, schedule, updateDate, id, password);
+    }
+
+    public int deleteSchedule(long id) {
+
+        String sql = "DELETE FROM schedule WHERE scheduleid = ?";
+
+        return jdbcTemplate.update(sql, id);
     }
 }

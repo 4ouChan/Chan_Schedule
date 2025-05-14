@@ -52,4 +52,10 @@ public class Controller {
         return ResponseEntity.ok(updateSchedule);
     }
 
+    @DeleteMapping("/{scheduleId}")
+    public List<ResponseDto> deleteSchedule(@PathVariable long scheduleId) {
+
+        return service.deleteSchedule(scheduleId);
+    }
+
 }

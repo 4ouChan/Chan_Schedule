@@ -24,12 +24,6 @@ public class Schedule {
         this.schedule = schedule;
     }
 
-    public Schedule(String userName, String password, String schedule, LocalDateTime updateDate) {
-        this.userName = userName;
-        this.password = password;
-        this.schedule = schedule;
-        this.updateDate = updateDate;
-    }
 
 
 

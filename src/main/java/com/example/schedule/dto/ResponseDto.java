@@ -1,6 +1,7 @@
 package com.example.schedule.dto;
 
 import com.example.schedule.entity.Schedule;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -17,11 +18,11 @@ public class ResponseDto {
     private LocalDateTime updateDate;
 
 
-    public ResponseDto(long scheduleId, String userName, String schedule) {
-        this.userName = userName;
-        this.scheduleId = scheduleId;
-        this.schedule = schedule;
-    }
+//    public ResponseDto(long scheduleId, String userName, String schedule) {
+//        this.userName = userName;
+//        this.scheduleId = scheduleId;
+//        this.schedule = schedule;
+//    }
 
     public ResponseDto(long scheduleId, String userName, String schedule, LocalDateTime createDate, LocalDateTime updateDate) {
         this.scheduleId = scheduleId;
@@ -31,14 +32,24 @@ public class ResponseDto {
         this.updateDate = updateDate;
     }
 
+//    public ResponseDto(long scheduleId, String userName, String password, String schedule, LocalDateTime createDate, LocalDateTime updateDate) {
+//        this.scheduleId = scheduleId;
+//        this.userName = userName;
+//        this.password = password;
+//        this.schedule = schedule;
+//        this.createDate = createDate;
+//        this.updateDate = updateDate;
+//    }
 
-    public ResponseDto(Schedule schedule) {
-        this.scheduleId = schedule.getScheduleId();
-        this.userName = schedule.getUserName();
-        this.schedule = schedule.getSchedule();
-        this.createDate = schedule.getCreateDate();
-        this.updateDate = schedule.getUpdateDate();
-    }
+
+//    public ResponseDto(Schedule schedule) {
+//        this.scheduleId = schedule.getScheduleId();
+//        this.userName = schedule.getUserName();
+//        this.schedule = schedule.getSchedule();
+//        this.createDate = schedule.getCreateDate();
+//        this.updateDate = schedule.getUpdateDate();
+//    }
+
 
 
 }

@@ -26,7 +26,7 @@ public class Serviced {
     // 기능
     public ResponseDto createSchedule(RequestDto dto) {
 
-        Schedule schedule = new Schedule(dto.getUserName(), dto.getSchedule());
+        Schedule schedule = new Schedule(dto.getUserName(), dto.getPassword(), dto.getSchedule());
 
         ResponseDto responseDto = repository.createSchedule(schedule);
 
@@ -46,10 +46,10 @@ public class Serviced {
 
         ResponseDto schedule = repository.getSchedule(id);
 
-        if (dto.getPassword().equals(repository.getSchedule(id).getPassword())) {
+        if (dto.getPassword().equals(schedule.getPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         } else {
-            int updateSchedule = repository.updateSchedule(id, dto.getUserName(), dto.getSchedule(), dto.getPassword());
+            int updateSchedule = repository.updateSchedule(id, dto.getUserName(), dto.getSchedule(), dto.getPassword(), dto.getUpdateDate());
         }
 
 

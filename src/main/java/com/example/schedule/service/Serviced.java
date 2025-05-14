@@ -33,14 +33,17 @@ public class Serviced {
         return responseDto;
     }
 
+
     public List<ResponseDto> scheduleList() {
         return repository.scheduleList();
     }
+
 
     public ResponseDto getSchedule(long id) {
 
         return repository.getSchedule(id);
     }
+
 
     public ResponseDto updateSchedule(long id, RequestDto dto) {
 
@@ -57,11 +60,22 @@ public class Serviced {
         return updateSchedule;
     }
 
-    public List<ResponseDto> deleteSchedule(long id) {
 
-        int deleted = repository.deleteSchedule(id);
+    public List<ResponseDto> deleteSchedule(long id, RequestDto dto) {
+
+
+        ResponseDto schedule = repository.getSchedule(id);
+
+        if (dto.getPassword() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if (dto.getPassword().equals(schedule.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        } else {
+            int deleteSchedule = repository.deleteSchedule(id, dto);
+        }
 
         return repository.scheduleList();
     }
-
 }

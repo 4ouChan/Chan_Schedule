@@ -23,10 +23,4 @@ public class Schedule {
         this.password = password;
         this.schedule = schedule;
     }
-
-
-
-
-
-
 }

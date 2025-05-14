@@ -1,5 +1,6 @@
 package com.example.schedule.repository;
 
+import com.example.schedule.dto.RequestDto;
 import com.example.schedule.dto.ResponseDto;
 import com.example.schedule.entity.Schedule;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,19 +20,15 @@ import java.util.Map;
 @Repository
 public class MyRepository {
 
-    // 속성
     private final JdbcTemplate jdbcTemplate;
+
+    private Map<String, Object> scheduleData = new HashMap<>();
 
     public MyRepository(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    private Map<String, Object> scheduleData = new HashMap<>();
 
-    // 생성자
-
-
-    // 기능
     private RowMapper<ResponseDto> rowMapper() {
         return new RowMapper<ResponseDto>() {
             @Override
@@ -59,9 +56,7 @@ public class MyRepository {
         scheduleData.put("createDate", schedule.getCreateDate());
         scheduleData.put("updateDate", schedule.getUpdateDate());
 
-        // 저장 후 생성된 key값을 Number 타입으로 반환하는 메서드
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(scheduleData));
-
 
         return new ResponseDto(key.longValue(), schedule.getUserName(), schedule.getSchedule(), schedule.getCreateDate(), schedule.getUpdateDate());
     }
@@ -85,10 +80,10 @@ public class MyRepository {
         return jdbcTemplate.update(sql, userName, schedule, updateDate, id, password);
     }
 
-    public int deleteSchedule(long id) {
+    public int deleteSchedule(long id, RequestDto dto) {
 
-        String sql = "DELETE FROM schedule WHERE scheduleid = ?";
+        String sql = "DELETE FROM schedule WHERE scheduleid = ? AND password = ?";
 
-        return jdbcTemplate.update(sql, id);
+        return jdbcTemplate.update(sql, id, dto.getPassword());
     }
 }

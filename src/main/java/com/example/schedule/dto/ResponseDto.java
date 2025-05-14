@@ -22,8 +22,4 @@ public class ResponseDto {
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
-
-
-
-
 }

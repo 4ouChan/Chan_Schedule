@@ -26,10 +26,11 @@ public class Controller {
     @PostMapping
     public ResponseEntity<ResponseDto> createSchedule(@RequestBody RequestDto dto) {
 
-        ResponseEntity<ResponseDto> responseDto = new ResponseEntity<>(service.createSchedule(dto), HttpStatus.OK);
+        ResponseEntity<ResponseDto> responseDto = new ResponseEntity<>(service.createSchedule(dto), HttpStatus.CREATED);
 
         return responseDto;
     }
+
 
     @GetMapping
     public List<ResponseDto> scheduleList() {
@@ -37,25 +38,34 @@ public class Controller {
         return service.scheduleList();
     }
 
+
     @GetMapping("/{scheduleId}")
     public ResponseEntity<ResponseDto> getSchedule(@PathVariable long scheduleId) {
-        ResponseDto getSchedule = service.getSchedule(scheduleId);
-        return ResponseEntity.ok(getSchedule);
+
+        ResponseEntity<ResponseDto> getSchedule = new ResponseEntity<>(service.getSchedule(scheduleId), HttpStatus.OK);
+
+        return getSchedule;
     }
+
 
     @PutMapping("/{scheduleId}")
     public ResponseEntity<ResponseDto> updateSchedule(
             @PathVariable long scheduleId,
             @RequestBody RequestDto dto
     ) {
-        ResponseDto updateSchedule = service.updateSchedule(scheduleId, dto);
-        return ResponseEntity.ok(updateSchedule);
+
+        ResponseEntity<ResponseDto> updateSchedule = new ResponseEntity<>(service.updateSchedule(scheduleId, dto), HttpStatus.OK);
+
+        return updateSchedule;
     }
+
 
     @DeleteMapping("/{scheduleId}")
-    public List<ResponseDto> deleteSchedule(@PathVariable long scheduleId) {
+    public List<ResponseDto> deleteSchedule(
+            @PathVariable long scheduleId,
+            @RequestBody RequestDto dto
+    ) {
 
-        return service.deleteSchedule(scheduleId);
+        return service.deleteSchedule(scheduleId, dto);
     }
-
 }
